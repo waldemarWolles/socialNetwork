@@ -1,0 +1,16 @@
+
+  .img {
+    width: 50px;
+    padding-right: 15px;
+  }
+  .post {
+    padding: 15px;
+  }
+
+  .post__item {
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+  }
+
+ 

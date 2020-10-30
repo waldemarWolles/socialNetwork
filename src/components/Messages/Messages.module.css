@@ -1,0 +1,55 @@
+.messagesArticle {
+    display: flex;
+}
+
+
+.dialogs .item, .messages .item {
+    padding: 20px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+}
+
+.item img {
+    padding-right: 10px;
+    width: 50px;
+}
+
+.active {
+    background-color:#4287f5;
+    border-radius: 10px;
+}
+
+.messages .item img {
+    width: 25px;
+}
+
+.dialogs, .messages {
+    padding: 0 100px;
+}
+
+.dialogs {
+   padding: 10px;
+}
+
+.dialogs .item {
+    padding-right: 100px;
+}
+
+.dialogs .item:hover {
+    background-color: #4287f5;
+    border-radius: 10px;
+}
+
+.messages {
+   
+    
+    width: 60%;
+}
+
+.messages .item {
+    border: 1px solid rgb(152, 152, 153);
+    border-radius: 10px;
+}

@@ -1,0 +1,8 @@
+.selectedPage {
+    font-weight: bold;
+  }
+
+  .disabledButton:hover {
+    background-color: #4287f5;
+    color: gray;
+  }

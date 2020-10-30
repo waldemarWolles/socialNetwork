@@ -1,0 +1,31 @@
+.profile {
+ max-width: 900px;
+}
+
+.userImg {
+    width: 50px;
+    padding-right: 15px;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+  }
+
+
+  .postForm {
+    padding: 30px 0;
+  }
+
+.addPost {
+    display: flex;
+    padding-top: 30px;
+  }
+
+.button {
+    display: inline-block;
+  }
+
+
+  
+  

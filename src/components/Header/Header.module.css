@@ -1,0 +1,62 @@
+.header 
+{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color:#3f3e3e;
+  justify-content: space-between;
+ 
+}
+
+#pageHeader {
+    grid-area: header;
+  }
+
+  .search, .nav, .options {
+    display: flex;
+    align-items: center;
+  }
+
+  .options_item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .search_item {
+    padding: 0 10px;
+    cursor: pointer;
+  }
+
+  .nav_item {
+    padding: 25px 50px 10px;
+    cursor: pointer;
+  }
+
+  .nav_item.active  {
+   fill: #4287f5;
+  }
+
+  .options_item:hover, .nav_item:hover {
+    background-color: #5d5c5c;
+    border-radius: 10px;
+  }
+
+  .img {
+    width: 30px;
+    height: 30px;
+  }
+
+.login {
+  display: flex;
+  align-items: center;
+}
+
+.login .img{
+  padding-right: 10px;
+}
+
+.logo:hover {
+  fill: #4287f5;
+}
