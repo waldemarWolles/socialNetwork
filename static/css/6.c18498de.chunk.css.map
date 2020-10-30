@@ -1,0 +1,1 @@
+{"version":3,"sources":["Paginator.module.css"],"names":[],"mappings":"AAAA,+BACI,eACF,CAEA,uCACE,wBAAyB,CACzB,UACF","file":"6.c18498de.chunk.css","sourcesContent":[".selectedPage {\r\n    font-weight: bold;\r\n  }\r\n\r\n  .disabledButton:hover {\r\n    background-color: #4287f5;\r\n    color: gray;\r\n  }"]}
