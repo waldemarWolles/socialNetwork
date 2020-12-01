@@ -1,0 +1,35 @@
+.users {
+  margin: 0;
+  padding: 20px;
+  background-color: #1c1e21;
+  border-radius: 20px;
+}
+
+.preloader {
+  margin: 0 auto;
+}
+
+.user {
+  display: flex;
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: #444343;
+  border-radius: 20px;
+  border: 3px solid rgb(131, 131, 131);
+}
+
+.user_photo {
+  border-radius: 20px;
+}
+
+.user_info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 30px;
+}
+
+.user_info_item {
+  padding: 5px;
+}

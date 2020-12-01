@@ -14,10 +14,11 @@ const TOGGLE_IS_FOLLOWING_IN_PROGRESS = 'TOGGLE_IS_FOLLOWING_IN_PROGRESS';
 let initialState = {
     users: [],
     pageSize: 100,
+    pageSizeFriends: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
-    followingInProgress: [2, 3]
+    followingInProgress: []
 
 }
 
@@ -55,6 +56,7 @@ const usersReducer = (state = initialState, action) => {
             }
         }
 
+
         case SET_CURRENT_PAGE: {
             return {
                 ...state,
@@ -62,12 +64,14 @@ const usersReducer = (state = initialState, action) => {
             }
         }
 
+       
         case SET_TOTAL_USERS_COUNT: {
             return {
                 ...state,
                 totalUsersCount: action.count
             }
         }
+
 
         case TOGGLE_IS_FETCHING: {
             return {
@@ -108,6 +112,14 @@ export const toggleIsFollowingInProgress = (isFetching, userId) => ({ type: TOGG
 export const getUsersThunk = (currentPage, pageSize) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
     let response = await usersAPI.getUsers(currentPage, pageSize);
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsers(response.items));
+    dispatch(setTotalUsersCount(response.totalCount));
+}
+
+export const getFriendsThunk = (friend) => async (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    let response = await usersAPI.getFriends(friend);
     dispatch(toggleIsFetching(false));
     dispatch(setUsers(response.items));
     dispatch(setTotalUsersCount(response.totalCount));

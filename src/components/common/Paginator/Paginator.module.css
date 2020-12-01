@@ -2,7 +2,32 @@
     font-weight: bold;
   }
 
-  .disabledButton:hover {
+.disabledButton:hover {
     background-color: #4287f5;
     color: gray;
   }
+
+.paginator {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  padding-bottom: 50px;
+}
+
+.pages {
+  padding: 0 10px;
+  width: 300px;
+}
+
+.pageNumber {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.pageNumber:hover {
+  background-color: #4287f5;
+  color: black;
+  
+}

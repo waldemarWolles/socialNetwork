@@ -7,15 +7,22 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { initializeApp } from './reduxx/app-reducer';
 import Preloader from './components/common/Preloader';
-
+import SideBarContainer from './components/SideBar/SideBarContainer';
+import FriendsContainer from './components/Friends/FriendsContainer';
+//import ProfileContainer from './components/Profile/ProfileContainer';
+//import MessagesContainer from './components/Messages/MessagesContainer';
+//import ProfileContainer from './components/Profile/ProfileContainer';
+//import ProfileContainer from './components/Profile/ProfileContainer';
+//import ProfileContainer from './components/Profile/ProfileContainer';
+//import ProfileContainer from './components/Profile/ProfileContainer';
 
 
 
 
 const MessagesContainer = React.lazy(() => import('./components/Messages/MessagesContainer'));
-const FriendsContainer = React.lazy(() => import('./components/Friends/FriendsContainer'));
+const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
-const Login = React.lazy(() => import('./components/Login/Login'));
+const LoginContainer = React.lazy(() => import('./components/Login/LoginContainer'));
 const Videos = React.lazy(() => import('./components/Videos/Videos'));
 const Events = React.lazy(() => import('./components/Events/Events'));
 
@@ -34,18 +41,18 @@ class App extends React.Component {
     return (
 
       <div className={classes.app}>
-
         <HeaderContainer />
-        <SideBar />
+        <SideBarContainer />
         <div className={classes.mainContent} id={classes.mainContent}>
           <Suspense fallback={<div><Preloader /></div>}>
             <Switch>
               <Route path='/messages' render={() => <MessagesContainer />} />
               <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
               <Route path='/friends' render={() => <FriendsContainer />} />
-                <Route path='/videos' render={() => <Videos />} />
+              <Route path='/users' render={() => <UsersContainer />} />
+              <Route path='/videos' render={() => <Videos />} />
               <Route path='/events' render={() => <Events />} />
-              <Route path='/login' render={() => <Login />} />
+              <Route path='/login' render={() => <LoginContainer />} />
             </Switch>
           </Suspense>
         </div>

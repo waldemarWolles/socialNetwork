@@ -1,16 +1,42 @@
 
-  .img {
+.img {
     width: 50px;
     padding-right: 15px;
   }
-  .post {
+.post {
     padding: 15px;
   }
 
-  .post__item {
+.post__item {
     display: flex;
     align-items: center;
     padding-bottom: 15px;
   }
 
- 
+.post_message {
+  padding: 20px;
+  background-color: #282c34;
+  border: 2px solid black;
+  border-radius: 20px;
+}
+
+.likes_container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+ .likes {
+   width: 20px;
+   margin-right:20px;
+   cursor: pointer;
+   fill: black;
+ }
+
+ .likes:hover {
+    fill: #4287f5;
+ }
+
+.liked {
+   fill: #4287f5;
+ }

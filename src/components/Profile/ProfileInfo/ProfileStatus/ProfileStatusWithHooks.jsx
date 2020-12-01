@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import classes from './../ProfileInfo.module.css';
 
 
-const ProfileStatus = (props) => {
+const ProfileStatusWithHooks = (props) => {
 
-   
+
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status);
+    let [hover, setHover] = useState(false);
 
-
-    useEffect( () => {
+    useEffect(() => {
         setStatus(props.status);
     }, [props.status]);
 
     const activatedEditMode = () => {
-        setEditMode(true);
+        if (props.authorizedUserId === props.profile.userId) {
+            setEditMode(true);
+        }
+
     }
 
     const deactivatedEditMode = () => {
@@ -24,28 +28,44 @@ const ProfileStatus = (props) => {
     const onStatusChange = (e) => {
         setStatus(e.currentTarget.value);
     }
-   
 
-        return <div>
+    const handleMouseIn = () => {
+        setHover(true);
+    }
 
-            {!editMode &&
+    const handleMouseOut = () => {
+        setHover(false);
+    }
+
+    debugger;
+    return <div className={classes.status}>
+
+        {!editMode &&
+            <div className={classes.status_text}>
                 <div >
-                    <span onDoubleClick={activatedEditMode}>{this.props.status || 'there is no status'}</span>
+                    <b>Status: </b>
+                    <span 
+                        onMouseOver={handleMouseIn}
+                        onMouseOut={handleMouseOut}
+                        onDoubleClick={activatedEditMode}> {props.status || 'there is no status'}
+                    </span>
                 </div>
-            }
+                {hover && props.authorizedUserId === props.profile.userId &&
+                    <div className={classes.status_popup}>DoubleClick to change status</div>}
+            </div>
+        }
 
-            {editMode &&
-                <div>
-                    <input  onChange={onStatusChange} autoFocus={true} onBlur={deactivatedEditMode} value={status} />
-                </div>
-             }
+        {editMode &&
+            <div>
+                <b>Status: </b>
+                <input onChange={onStatusChange} autoFocus={true} onBlur={deactivatedEditMode} value={status} />
+            </div>
+        }
 
+    </div>
 
-
-        </div>
-  
 
 }
 
 
-export default ProfileStatus;
+export default ProfileStatusWithHooks;

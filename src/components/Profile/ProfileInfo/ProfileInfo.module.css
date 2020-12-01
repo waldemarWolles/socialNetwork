@@ -1,0 +1,57 @@
+.profile_info {
+    margin: 0 auto;
+    display: flex;
+    
+}
+
+.img_container {
+    width: 50%;
+    margin-right: 10px;
+}
+
+.img {
+  width: 100%;
+}
+
+.profile_photo_input{
+   display: none;
+}
+
+.status {
+    padding: 20px 0;
+    cursor: pointer;
+}
+
+.status_text {
+    display: flex;
+    justify-content: space-between
+}
+
+.form_error {
+    border: 1px solid red;
+    padding: 20px;
+}
+
+.profile_data {
+    width: 50%;
+}
+
+.profile_data_item {
+    margin: 10px 0;
+}
+
+.status_popup {
+    position: absolute;
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid#4287f5;
+    border-radius: 10px;
+    max-width: 300px;
+}
+
+.addPost_item {
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+}
+

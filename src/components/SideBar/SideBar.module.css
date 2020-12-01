@@ -1,7 +1,8 @@
 .sideBar 
 {
   padding: 20px;
-  background-color: #1c1e21;
+  background-color: #282c34;
+  
 }
 
 #pageSideBar {
@@ -26,9 +27,13 @@
   }
 
 .img {
-    padding-right: 20px;
+    margin-right: 20px;
     width: 30px;
     height: 30px;
     fill:#4287f5;
+  }
+ 
+.img.auth_user {
+    border-radius: 20px;
   }
  

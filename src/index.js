@@ -10,20 +10,17 @@ import { Provider } from 'react-redux';
 
 
 
-let rerenderEntireTree = (state) => {
-  ReactDOM.render(
-    <HashRouter>
-      <React.StrictMode>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </React.StrictMode>
-    </HashRouter>,
-    document.getElementById('root')
-  );
 
-}
+ReactDOM.render(
+  <HashRouter>
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>
+  </HashRouter>,
+  document.getElementById('root')
+);
 
-rerenderEntireTree(store.getState());
 
-store.subscribe(rerenderEntireTree);
+

@@ -2,28 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Friends from './Friends';
 import {
-    follow,
-    setCurrentPage,
-    setTotalUsersCount,
-    setUsers,
-    unfollow,
-    toggleIsFollowingInProgress,
-    getUsersThunk,
-    followThunk,
-    unfollowThunk
+  follow,
+  unfollow,
+  toggleIsFollowingInProgress,
+  followThunk,
+  unfollowThunk,
+  getFriendsThunk,
+  setCurrentPage
 } from '../../reduxx/users-reducer';
 import Preloader from '../common/Preloader';
-import { Redirect } from 'react-router-dom';
-import {withAuthRedirect} from '../common/withAuthRedirect';
+import { withAuthRedirect } from '../common/withAuthRedirect';
 import { compose } from 'redux';
-import {
-    getUsers,
-    getPageSize,
-    getTotalUsersCount,
-    getCurrentPage,
-    getIsFetching,
-    getFollowingInProgress
-} from '../../reduxx/users-selectors';
+
 
 
 
@@ -31,26 +21,24 @@ import {
 
 class FriendsContainer extends React.Component {
 
-
   componentDidMount = () => {
-    const {currentPage, pageSize} = this.props;
-    this.props.getUsersThunk(currentPage, pageSize);
+    const { friend } = this.props;
+    this.props.getFriendsThunk(friend);
 
   }
 
   onPageChanged = (pageNumber) => {
-    const {pageSize} = this.props;
+    const { pageSizeFriends } = this.props;
     this.props.setCurrentPage(pageNumber);
-    this.props.getUsersThunk(pageNumber, pageSize);
+    this.props.getFriendsThunk(pageNumber, pageSizeFriends);
   }
 
   render() {
-
     return (<>
       { this.props.isFetching ? <Preloader /> : null}
       <Friends
         users={this.props.users}
-        pageSize={this.props.pageSize}
+        pageSizeFriends={this.props.pageSizeFriends}
         totalUsersCount={this.props.totalUsersCount}
         currentPage={this.props.currentPage}
         follow={this.props.follow}
@@ -65,36 +53,23 @@ class FriendsContainer extends React.Component {
 
 }
 
-
-// const mapStateToProps = (state) => {
-//   return {
-//     users: state.usersPage.users,
-//     pageSize: state.usersPage.pageSize,
-//     totalUsersCount: state.usersPage.totalUsersCount,
-//     currentPage: state.usersPage.currentPage,
-//     isFetching: state.usersPage.isFetching,
-//     followingInProgress: state.usersPage.followingInProgress,
-//   }
-// }
-
 const mapStateToProps = (state) => {
   return {
-    users: getUsers(state),
-    pageSize: getPageSize(state),
-    totalUsersCount: getTotalUsersCount(state),
-    currentPage: getCurrentPage(state),
-    isFetching: getIsFetching(state),
-    followingInProgress: getFollowingInProgress(state),
+    users: state.usersPage.users,
+    pageSizeFriends: state.usersPage.pageSizeFriends,
+    totalUsersCount: state.usersPage.totalUsersCount,
+    currentPage: state.usersPage.currentPage,
+    isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress,
+
   }
 }
-
-
 export default compose(
   connect(mapStateToProps, {
     follow,
     unfollow,
+    getFriendsThunk,
     setCurrentPage,
-    getUsersThunk,
     toggleIsFollowingInProgress,
     followThunk,
     unfollowThunk
@@ -103,31 +78,5 @@ export default compose(
 )(FriendsContainer)
 
 
-
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     follow: (userId) => {
-//       dispatch(followAC(userId));
-//     },
-//     unfollow: (userId) => {
-//       dispatch(unfollowAC(userId));
-//     },
-//     setUsers: (users) => {
-//       dispatch(setUsersAC(users));
-//     },
-//     setCurrentPage: (pageNumber) => {
-//       dispatch(setCurrentPageAC(pageNumber));
-//     },
-//     setTotalUsersCount: (totalCount) => {
-//       dispatch(setTotalUsersCountAC(totalCount));
-//     },
-//     toggleIsFetching: (isFetching) => {
-//       dispatch(toggleIsFetchingAC(isFetching));
-//     },
-//   }
-// }
-
-// follow: follow ==> follow etc
 
 
