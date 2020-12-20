@@ -31,8 +31,8 @@ import FormControlsWithFormik from '../common/FormControls/FormControlsWithFormi
       {
         formik => {
           return <Form>
-            <FormControlsWithFormik control='input' type='email' name='email' placeholder='Enter your email' label='Email' />
-            <FormControlsWithFormik control='input' type='password' name='password' placeholder='Enter your password' label='Password' />
+            <FormControlsWithFormik control='input' type='email' name='email' placeholder='Enter your email' label='Email: free@samuraijs.com' />
+            <FormControlsWithFormik control='input' type='password' name='password' placeholder='Enter your password' label='Password: free' />
             <FormControlsWithFormik control='checkbox' name='rememberMe' label='Remember me?' options={checkboxOptions} /> 
             {captchaUrl && <img src={captchaUrl} alt='captchaUrl'/> }
             {captchaUrl && <FormControlsWithFormik control='input' placeholder='Write symbols from image' name='captcha' label='Captcha'/>}
