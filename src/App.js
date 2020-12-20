@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import classes from './App.module.css';
-import SideBar from './components/SideBar/SideBar';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import { compose } from 'redux';
@@ -9,17 +8,6 @@ import { initializeApp } from './reduxx/app-reducer';
 import Preloader from './components/common/Preloader';
 import SideBarContainer from './components/SideBar/SideBarContainer';
 import FriendsContainer from './components/Friends/FriendsContainer';
-import algoliasearch from 'algoliasearch/lite';
-import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom';
-
-const searchClient = algoliasearch(
-  'https://social-network.samuraijs.com/api/1.0/',
-  '706fad94-0cd0-4565-8db0-3b78dd0a8c25'
-);
-
-
-
-
 
 
 const MessagesContainer = React.lazy(() => import('./components/Messages/MessagesContainer'));
@@ -47,13 +35,6 @@ class App extends React.Component {
         <SideBarContainer />
 
         <div className={classes.mainContent} id={classes.mainContent}>
-          <InstantSearch
-            indexName="bestbuy"
-            searchClient={searchClient}
-          >
-            <SearchBox />
-            <Hits />
-          </InstantSearch>
           <Suspense fallback={<div><Preloader /></div>}>
             <Switch>
               <Route path='/messages' render={() => <MessagesContainer />} />
