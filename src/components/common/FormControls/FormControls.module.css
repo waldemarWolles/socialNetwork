@@ -9,8 +9,8 @@
    input[type='text'],
    input[type='email'],
    textarea,
-   input,
    select,
+   input,
    .input {
      display: block;
      width: 400px;
@@ -22,7 +22,12 @@
      background-image: none;
      border: 1px solid #ccc;
      border-radius: 4px;
-     
+   }
+
+   label {
+    display: block;
+    text-align: center;
+    width: 400px;
    }
    
    .forms_control {

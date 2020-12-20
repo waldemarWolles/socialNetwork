@@ -12,7 +12,7 @@ const Login = (props) => {
   }
 
   if (props.isAuth) {
-    return <Redirect to={'/events'} />
+    return <Redirect to={'/'} />
   } 
 
   return <div className={classes.login} >

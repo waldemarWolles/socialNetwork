@@ -11,6 +11,9 @@
 
 .img {
   width: 100%;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  margin-right: 100px;
 }
 
 .profile_photo_input{

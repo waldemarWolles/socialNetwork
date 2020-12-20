@@ -5,6 +5,7 @@ import userPhoto from '../../../images/headerOptions/user.svg';
 import classes from './ProfileInfo.module.css';
 import ProfileDataForm from './ProfileDataForm';
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
+import ProfileDataFormik from './ProfileDataFormik';
 
 
 const ProfileInfo = ({ profile, status, updateStatusThunk, isOwner, savePhotoThunk, saveProfileThunk, authorizedUserId }) => {
@@ -28,8 +29,8 @@ const ProfileInfo = ({ profile, status, updateStatusThunk, isOwner, savePhotoThu
         }
     }
 
-    const onSubmit = (formData) => {
-        saveProfileThunk(formData).then(
+    const onSubmit = (values) => {
+        saveProfileThunk(values).then(
             () => {
                 setEditMode(false);
             }
@@ -51,7 +52,7 @@ const ProfileInfo = ({ profile, status, updateStatusThunk, isOwner, savePhotoThu
         </div>
         <div className={classes.profile_data}>
             {editMode
-                ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit} />
+                ? <ProfileDataFormik initialValues={profile} profile={profile} onSubmit={onSubmit} />
                 : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => setEditMode(true)} />}
         </div>
     </div>

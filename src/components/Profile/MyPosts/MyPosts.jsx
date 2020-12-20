@@ -27,7 +27,7 @@ debugger;
 
 
     let addPostText = (values) => {
-        props.addPost(values.newPostText);
+         props.addPost(values.newPostText);
     }
 
 

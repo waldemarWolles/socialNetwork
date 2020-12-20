@@ -17,21 +17,21 @@ const FormControlsWithFormik = (props) => {
 }
 
 const Textarea = (props) => {
-    const { label, name, ...rest } = props;
+    const { label, name, key, ...rest } = props;
     return (
         <div className={classes.formik_controls}>
            <label htmlFor={name}>{label}</label>
-           <Field as='textarea' id={name} name={name} {...rest}/>
+           <Field as='textarea' key={key} id={name} name={name} {...rest}/>
            <ErrorMessage name={name} component={ErrorText} />
         </div>
     );
 }
 const Input = (props) => {
-    const { label, name,...rest } = props;
+    const { label, name, key, ...rest } = props;
     return (
         <div className={classes.formik_controls}>
            <label htmlFor={name}>{label}</label>
-           <Field id={name} name={name} {...rest} />
+           <Field id={name} key={key} name={name} {...rest} />
            <ErrorMessage name={name} component={ErrorText} />
         </div>
     );

@@ -23,6 +23,7 @@ const Profile = (props) => {
         profile={props.profile} 
         addPost={props.addPost}
         updateNewPostText={props.updateNewPostText}
+        authorizedUserId={props.authorizedUserId}
         />
 
 

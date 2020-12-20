@@ -36,19 +36,7 @@ const SideBar = (props) => {
         <div className={classes.item}>
             <NavLink to="/videos"><VideoImg className={classes.img} /><h3>Videos</h3></NavLink>
         </div>
-        <div className={classes.item}>
-            <NavLink to="/events"><EventsImg className={classes.img} /><h3>Events</h3></NavLink>
-        </div>
-        <div className={classes.item}>
-            <NavLink to="/memories"><MemoriesImg className={classes.img} /><h3>Memories</h3></NavLink>
-        </div>
-        <div className={classes.item}>
-            <NavLink to="/saved"><SavedImg className={classes.img} /><h3>Saved</h3></NavLink>
-        </div>
-        <div className={classes.item}>
-            <NavLink to="/pages"><PagesImg className={classes.img} /><h3>Pages</h3></NavLink>
-        </div>
-
+       
     </div>
 
 }

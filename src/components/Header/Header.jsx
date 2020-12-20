@@ -57,11 +57,6 @@ const Header = ({ authUserPhoto, ...props }) => {
                         <GroupsImg className={classes.img} />
                     </NavLink>
                 </div>
-                <div >
-                    <NavLink className={classes.nav_item} to="/games" activeClassName={classes.active} data-title='Games'>
-                        <GamesImg className={classes.img} />
-                    </NavLink>
-                </div>
             </nav>
         </div>
         <div className={classes.auth_user}>

@@ -9,12 +9,15 @@ import { initializeApp } from './reduxx/app-reducer';
 import Preloader from './components/common/Preloader';
 import SideBarContainer from './components/SideBar/SideBarContainer';
 import FriendsContainer from './components/Friends/FriendsContainer';
-//import ProfileContainer from './components/Profile/ProfileContainer';
-//import MessagesContainer from './components/Messages/MessagesContainer';
-//import ProfileContainer from './components/Profile/ProfileContainer';
-//import ProfileContainer from './components/Profile/ProfileContainer';
-//import ProfileContainer from './components/Profile/ProfileContainer';
-//import ProfileContainer from './components/Profile/ProfileContainer';
+import algoliasearch from 'algoliasearch/lite';
+import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom';
+
+const searchClient = algoliasearch(
+  'https://social-network.samuraijs.com/api/1.0/',
+  '706fad94-0cd0-4565-8db0-3b78dd0a8c25'
+);
+
+
 
 
 
@@ -24,7 +27,6 @@ const UsersContainer = React.lazy(() => import('./components/Users/UsersContaine
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const LoginContainer = React.lazy(() => import('./components/Login/LoginContainer'));
 const Videos = React.lazy(() => import('./components/Videos/Videos'));
-const Events = React.lazy(() => import('./components/Events/Events'));
 
 class App extends React.Component {
 
@@ -43,7 +45,15 @@ class App extends React.Component {
       <div className={classes.app}>
         <HeaderContainer />
         <SideBarContainer />
+
         <div className={classes.mainContent} id={classes.mainContent}>
+          <InstantSearch
+            indexName="bestbuy"
+            searchClient={searchClient}
+          >
+            <SearchBox />
+            <Hits />
+          </InstantSearch>
           <Suspense fallback={<div><Preloader /></div>}>
             <Switch>
               <Route path='/messages' render={() => <MessagesContainer />} />
@@ -51,7 +61,6 @@ class App extends React.Component {
               <Route path='/friends' render={() => <FriendsContainer />} />
               <Route path='/users' render={() => <UsersContainer />} />
               <Route path='/videos' render={() => <Videos />} />
-              <Route path='/events' render={() => <Events />} />
               <Route path='/login' render={() => <LoginContainer />} />
             </Switch>
           </Suspense>
