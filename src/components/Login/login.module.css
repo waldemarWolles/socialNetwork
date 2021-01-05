@@ -6,3 +6,15 @@
     border: 1px solid red;
     padding: 20px;
 }
+
+.checkbox {
+    margin-top: 10px;
+}
+
+.checkbox_field {
+    margin: 0;
+}
+
+.checkbox h4 {
+    margin-left: 150px;
+}

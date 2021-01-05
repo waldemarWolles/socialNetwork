@@ -9,9 +9,15 @@
 
 .post__item {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding-bottom: 15px;
   }
+
+.post___content {
+  display: flex;
+  align-items: center;
+}
 
 .post_message {
   padding: 20px;
@@ -38,5 +44,5 @@
  }
 
 .liked {
-   fill: #4287f5;
+  fill: #4287f5;
  }
