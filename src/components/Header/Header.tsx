@@ -1,5 +1,5 @@
 /* eslint-disable import/first */
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Header.module.css';
 import { ReactComponent as HomeImg } from '../../images/headerNav/home.svg';
 import { ReactComponent as FriendsImg } from '../../images/headerNav/friends.svg';
@@ -10,19 +10,31 @@ import { ReactComponent as Logo } from '../../images/Logo.svg';
 import UserImg from '../../images/sideBar/user.svg';
 import { ReactComponent as LockImg } from '../../images/headerOptions/lock.svg';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppRootStateType } from '../../reduxx/redux-store';
+import { getAuthUserPhotoThunk, logoutThunk } from '../../reduxx/auth-reducer';
 
 type PropsType = {
-    authUserPhoto: string | null 
-    isAuth: boolean
-    login: string | null
-   
-   
-    logoutThunk: () => void
 }
 
 
+export const Header: React.FC<PropsType> = (props) => {
 
-const Header: React.FC<PropsType> = ({ authUserPhoto, ...props }) => {
+    const authUserPhoto = useSelector((state: AppRootStateType) => state.auth.authUserPhoto)
+    const isAuth = useSelector((state: AppRootStateType) => state.auth.isAuth)
+    const login = useSelector((state: AppRootStateType) => state.auth.login)
+    const userId = useSelector((state: AppRootStateType) => state.auth.userId)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getAuthUserPhotoThunk(userId))
+    }, [dispatch, userId])
+
+    const logOut = () => {
+        dispatch(logoutThunk)
+    }
+
 
     let userPhoto = UserImg;
     if (authUserPhoto) {
@@ -70,11 +82,11 @@ const Header: React.FC<PropsType> = ({ authUserPhoto, ...props }) => {
         </div>
         <div className={classes.auth_user}>
             {
-                props.isAuth
+                isAuth
                     ? <div className={classes.login} ><NavLink className={classes.login} to='/login'>
-                        <img className={classes.img} src={userPhoto} alt='' /> <h3>{props.login}</h3></NavLink>
+                        <img className={classes.img} src={userPhoto} alt='' /> <h3>{login}</h3></NavLink>
                         <NavLink to='/login'>
-                            <button className={classes.button} onClick={props.logoutThunk} >Log Out</button>
+                            <button className={classes.button} onClick={logOut} >Log Out</button>
                         </NavLink>
                     </div>
                     : <NavLink className={classes.login} to="/login">
@@ -85,5 +97,3 @@ const Header: React.FC<PropsType> = ({ authUserPhoto, ...props }) => {
     </header>
 }
 
-
-export default Header;

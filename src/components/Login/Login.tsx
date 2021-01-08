@@ -2,20 +2,25 @@ import React from 'react';
 import classes from './login.module.css';
 import { Redirect } from 'react-router-dom';
 import LoginWithFormik, { FormDataType } from './LoginWithFormik';
-
-type PropsType = {
-  captchaUrl: string | null
-  isAuth: boolean 
-  errorMessage: string | null
-  loginThunk: (email: string, password: string, rememberMe: boolean, captcha: string | null) => void
-}
+import { useDispatch, useSelector } from 'react-redux';
+import { AppRootStateType } from '../../reduxx/redux-store';
+import { loginThunk } from '../../reduxx/auth-reducer';
 
 
-const Login: React.FC<PropsType> = ({captchaUrl, isAuth, errorMessage, loginThunk}) => {
+
+export const Login: React.FC = (props) => {
+
+  const captchaUrl = useSelector((state: AppRootStateType) => state.auth.captchaUrl)
+  const isAuth = useSelector((state: AppRootStateType) => state.auth.isAuth)
+  const errorMessage = useSelector((state: AppRootStateType) => state.auth.errorMessage)
+
+  const dispatch = useDispatch()
+
+
 
   const onSubmit = (formData: FormDataType) => {
     debugger
-   loginThunk(formData.email, formData.password, formData.rememberMe, formData.captcha);
+   dispatch(loginThunk(formData.email, formData.password, formData.rememberMe, formData.captcha))
   }
 
   if (isAuth) {
@@ -27,5 +32,3 @@ const Login: React.FC<PropsType> = ({captchaUrl, isAuth, errorMessage, loginThun
     <LoginWithFormik onSubmit={onSubmit} captchaUrl={captchaUrl} errorMessage={errorMessage}/>
   </div>
   }
-
-export default Login;

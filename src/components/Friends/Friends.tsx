@@ -1,42 +1,64 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Friends.module.css';
 import User from '../Users/User';
 import Paginator from '../common/Paginator/Paginator';
 import { UserType } from '../../types/types';
-
-type PropsType = {
-  currentPage: number
-  totalUsersCount: number
-  pageSizeFriends: number
-  users: Array<UserType>
-  followingInProgress: Array<number>
-
-  onPageChanged: (currentPage: number) => void
-  unfollowThunk: (userId: number) => void
-  followThunk: (userId: number) => void
-}
+import { useDispatch, useSelector } from 'react-redux';
+import { AppRootStateType } from '../../reduxx/redux-store';
+import {
+    actionsUsersReducer,
+    getFriendsThunk,
+    unfollowThunk,
+    followThunk
+} from '../../reduxx/users-reducer';
 
 
-const Friends: React.FC<PropsType> = (props) => {
+export const Friends: React.FC = (props) => {
+
+
+  const currentPage = useSelector((state: AppRootStateType) => state.usersPage.currentPage)
+  const totalUsersCount = useSelector((state: AppRootStateType) => state.usersPage.totalUsersCount)
+  const pageSizeFriends = useSelector((state: AppRootStateType) => state.usersPage.pageSizeFriends)
+  const users = useSelector((state: AppRootStateType) => state.usersPage.users)
+  const followingInProgress = useSelector((state: AppRootStateType) => state.usersPage.followingInProgress)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getFriendsThunk(1, pageSizeFriends, true ))
+  }, [dispatch, pageSizeFriends])
+
+  const onPageChanged = (currentPage: number) => {
+    dispatch(actionsUsersReducer.setCurrentPage(currentPage))
+    dispatch(getFriendsThunk(currentPage, pageSizeFriends, true))
+  }
+
+  const unfollow = (userId: number) => {
+    dispatch(unfollowThunk(userId))
+  }
+
+  const follow = (userId: number) => {
+    dispatch(followThunk(userId))
+  }
+
 
   return (
     <div className={classes.friends}>
       <Paginator
-        currentPage={props.currentPage}
-        onPageChanged={props.onPageChanged}
-        totalItemsCount={props.totalUsersCount}
-        pageSize={props.pageSizeFriends} />
+        currentPage={currentPage}
+        onPageChanged={onPageChanged}
+        totalItemsCount={totalUsersCount}
+        pageSize={pageSizeFriends} />
 
-      {props.users.filter(u => u.followed === true).map(u =>
+      {users.filter(u => u.followed === true).map(u =>
         <User
           user={u} key={u.id}
-          followingInProgress={props.followingInProgress}
-          unfollowThunk={props.unfollowThunk} followThunk={props.followThunk} />
+          followingInProgress={followingInProgress}
+          unfollow={unfollow} follow={follow} />
       )}
     </div>
   );
 
 }
 
-export default Friends;
 

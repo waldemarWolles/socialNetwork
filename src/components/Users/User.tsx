@@ -10,12 +10,12 @@ type PropsType = {
   followingInProgress: Array<number>
 
 
-  unfollowThunk: (userId: number) => void
-  followThunk: (userId: number) => void
+  unfollow: (userId: number) => void
+  follow: (userId: number) => void
 }
 
 
-const User: React.FC<PropsType> = ({ user, followingInProgress, unfollowThunk, followThunk }) => {
+const User: React.FC<PropsType> = ({ user, followingInProgress, unfollow, follow }) => {
 
   let u = user
   return (
@@ -32,10 +32,10 @@ const User: React.FC<PropsType> = ({ user, followingInProgress, unfollowThunk, f
         <div className={classes.user_info_item}>
           {u.followed
             ? <button disabled={followingInProgress.some(id => id === u.id)} onClick={() => {
-              unfollowThunk(u.id);
+              unfollow(u.id);
             }}>Unfollow</button>
             : <button disabled={followingInProgress.some(id => id === u.id)} onClick={() => {
-              followThunk(u.id);
+              follow(u.id);
             }}>Follow</button>}
         </div>
       </div>

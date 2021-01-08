@@ -32,6 +32,7 @@ type PropsType = {
     email: Yup.string().email('Invalid email format').required('Required field!'),
     password: Yup.string().required('Required field!'),
     rememberMe: Yup.bool(),
+    captcha: Yup.string(),
   });
 
   
