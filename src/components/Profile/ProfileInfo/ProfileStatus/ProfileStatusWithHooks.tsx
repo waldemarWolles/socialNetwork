@@ -6,7 +6,7 @@ type PropsType = {
     status: string
     profile: ProfileType
     authorizedUserId: number | null
-    updateStatusThunk: (status: string) => void
+    updateStatus: (status: string) => void
 }
 
 const ProfileStatusWithHooks: React.FC<PropsType> = (props) => {
@@ -29,7 +29,7 @@ const ProfileStatusWithHooks: React.FC<PropsType> = (props) => {
 
     const deactivatedEditMode = () => {
         setEditMode(false);
-        props.updateStatusThunk(status);
+        props.updateStatus(status);
     }
 
     const onStatusChange = (e:React.ChangeEvent<HTMLInputElement> ) => {

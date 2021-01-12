@@ -67,6 +67,7 @@ type ThunkType = BasicThunkType<AuthReducerActionsTypes>
 
 export const getAuthUserPhotoThunk = (userId: number | null): ThunkType => {
     return async (dispatch) => {
+        debugger
         let response = await profileAPI.getProfile(userId);
         dispatch(actionsAuthReducer.setAuthUserPhoto(response.photos.small));
     }
@@ -109,11 +110,16 @@ export const getCaptchaUrlThunk = (): ThunkType => {
 }
 
 export const logoutThunk = (): ThunkType => {
+   
+    debugger
     return async (dispatch) => {
+        debugger
         let captchUrl = ''
         let response = await authAPI.logout();
+        debugger
         if (response.resultCode === ResultCodeEnums.Success) {
             dispatch(actionsAuthReducer.setUserAuthData(null, null, null, false));// after logout we need to reset all data about user
+            debugger
             dispatch(actionsAuthReducer.deleteCaptchaUrl(captchUrl));
         }
     }

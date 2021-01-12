@@ -2,18 +2,25 @@ import React from 'react'
 import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import { FilterType } from '../../reduxx/users-reducer'
+import { getUsersFilter } from '../../reduxx/users-selectors'
+import { useSelector } from 'react-redux'
 
 
 type PropsType = {
   onFilterChanged: (filter: FilterType) => void
 }
 
+type FriendFormType = 'true' | 'false' | 'null'
+
 type FormType = {
   term: string,
-  friend: 'true' | 'false' | 'null'
+  friend: FriendFormType
 }
 
 const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
+
+  const filter = useSelector(getUsersFilter)
+
   const submit = (values: FormType) => {
     debugger
     const filter: FilterType = {
@@ -23,12 +30,13 @@ const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
 
     props.onFilterChanged(filter)
   }
-
+  debugger
 
   return <div>
     <h1>Any place in your app!</h1>
     <Formik
-      initialValues={{ term: '', friend: 'null' }}
+      enableReinitialize={true}
+      initialValues={{ term: filter.term, friend: String(filter.friend) as FriendFormType }}
       validationSchema={Yup.object({
         term: Yup.string()
       })}

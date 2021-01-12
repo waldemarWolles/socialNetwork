@@ -14,8 +14,10 @@ type LoginDataResponseType = {
 
 export const authAPI = {
     getAuth: () => {
+        debugger
         return instance.get<APIResponseType<GetAuthDataResponseType>>(`auth/me`)
             .then(response => {
+                debugger
                 return response.data
             });
     },
@@ -34,11 +36,11 @@ export const authAPI = {
             });
     },
 
-    logout: () => {
-        return instance.delete<APIResponseType>(`auth/login`)
-            .then(response => {
-                return response.data
-            });
+    logout: async function () {
+        debugger;
+        const response = await instance.delete<APIResponseType>(`auth/login`);
+        debugger;
+        return response.data;
     }
 }
 

@@ -14,6 +14,7 @@ type PropsType = {
 }
 
 const ProfileDataFormik: React.FC<PropsType> = ({ profile, onSubmit, errorMessage }) => {
+    debugger
 
     return <Formik
         initialValues={

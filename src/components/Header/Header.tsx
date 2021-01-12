@@ -12,7 +12,8 @@ import { ReactComponent as LockImg } from '../../images/headerOptions/lock.svg';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppRootStateType } from '../../reduxx/redux-store';
-import { getAuthUserPhotoThunk, logoutThunk } from '../../reduxx/auth-reducer';
+import { getAuthUserPhotoThunk, logoutThunk} from '../../reduxx/auth-reducer';
+import { getAuthUserPhoto, getIsAuth, getLogin, getUserId } from '../../reduxx/auth-selectors';
 
 type PropsType = {
 }
@@ -20,27 +21,34 @@ type PropsType = {
 
 export const Header: React.FC<PropsType> = (props) => {
 
-    const authUserPhoto = useSelector((state: AppRootStateType) => state.auth.authUserPhoto)
-    const isAuth = useSelector((state: AppRootStateType) => state.auth.isAuth)
-    const login = useSelector((state: AppRootStateType) => state.auth.login)
-    const userId = useSelector((state: AppRootStateType) => state.auth.userId)
+    const authUserPhoto = useSelector(getAuthUserPhoto)
+    const isAuth = useSelector(getIsAuth)
+    const login = useSelector(getLogin)
+    const userId = useSelector(getUserId)
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getAuthUserPhotoThunk(userId))
-    }, [dispatch, userId])
-
-    const logOut = () => {
-        dispatch(logoutThunk)
+    const logOut = () =>  {
+        dispatch(logoutThunk())
     }
+
+    useEffect(() => {
+        if(isAuth) {
+          dispatch(getAuthUserPhotoThunk(userId))
+        }
+    }, [dispatch, isAuth, userId]) 
+
+   
 
 
     let userPhoto = UserImg;
+    debugger
     if (authUserPhoto) {
         userPhoto = authUserPhoto;
     }
+    debugger
     return <header className={classes.header} id={classes.pageHeader}>
+        
         <div className={classes.search}>
             <div className={classes.search_item}>
                 <NavLink to="/profile" > <Logo className={`${classes.img} ${classes.logo}`} /></NavLink>
@@ -82,6 +90,7 @@ export const Header: React.FC<PropsType> = (props) => {
         </div>
         <div className={classes.auth_user}>
             {
+                
                 isAuth
                     ? <div className={classes.login} ><NavLink className={classes.login} to='/login'>
                         <img className={classes.img} src={userPhoto} alt='' /> <h3>{login}</h3></NavLink>

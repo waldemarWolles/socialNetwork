@@ -3,16 +3,16 @@ import classes from './login.module.css';
 import { Redirect } from 'react-router-dom';
 import LoginWithFormik, { FormDataType } from './LoginWithFormik';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppRootStateType } from '../../reduxx/redux-store';
 import { loginThunk } from '../../reduxx/auth-reducer';
+import { getCaptchaUrl, getErrorMessage, getIsAuth } from '../../reduxx/auth-selectors';
 
 
 
 export const Login: React.FC = (props) => {
 
-  const captchaUrl = useSelector((state: AppRootStateType) => state.auth.captchaUrl)
-  const isAuth = useSelector((state: AppRootStateType) => state.auth.isAuth)
-  const errorMessage = useSelector((state: AppRootStateType) => state.auth.errorMessage)
+  const captchaUrl = useSelector(getCaptchaUrl)
+  const isAuth = useSelector(getIsAuth)
+  const errorMessage = useSelector(getErrorMessage)
 
   const dispatch = useDispatch()
 

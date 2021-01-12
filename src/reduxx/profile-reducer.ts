@@ -1,5 +1,4 @@
 import { ResultCodeEnums } from "../api/api"
-import { actionsAuthReducer } from './auth-reducer'
 import { PhotosType, PostsType, ProfileType } from "../types/types"
 import { BasicThunkType, InferActionsTypes } from "./redux-store"
 import { profileAPI } from "../api/profile-api"
@@ -70,7 +69,7 @@ const profileReducer = (state = initialState, action: ProfileReducerActionsTypes
 }
 // Action Creators
 
-type ProfileReducerActionsTypes = InferActionsTypes<typeof actionsProfileReducer & typeof actionsAuthReducer>
+type ProfileReducerActionsTypes = InferActionsTypes<typeof actionsProfileReducer>
 
 
 export const actionsProfileReducer = {
@@ -93,7 +92,7 @@ export const getProfileThunk = (userId: number): ThunkType => {
     return async (dispatch, getState) => {
         let response = await profileAPI.getProfile(userId)
         dispatch(actionsProfileReducer.setUserProfile(response))
-        dispatch(actionsAuthReducer.setAuthUserPhoto(response.photos.small))
+        //dispatch(actionsAuthReducer.setAuthUserPhoto(response.photos.small))
     }
 }
 
@@ -117,7 +116,7 @@ export const savePhotoThunk = (file: File): ThunkType => {
         let response = await profileAPI.savePhoto(file)
         if (response.resultCode === ResultCodeEnums.Success) {
             dispatch(actionsProfileReducer.savePhotoSuccess(response.data.photos))
-            dispatch(actionsAuthReducer.setAuthUserPhoto(response.data.photos.small))
+            //dispatch(actionsAuthReducer.setAuthUserPhoto(response.data.photos.small))
         }
     }
 }

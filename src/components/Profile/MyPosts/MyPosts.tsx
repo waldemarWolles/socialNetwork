@@ -2,45 +2,53 @@ import React from 'react';
 import classes from '../Profile.module.css';
 import Post from './Posts/Post';
 import UserImg from '../../../images/sideBar/user.svg';
-// import { Field, reduxForm, reset } from 'redux-form';
-// import { required,  maxLengthCreator } from '../../../utils/validators/validators';
-// import { Textarea } from '../../common/FormControls/FormControls.jsx';
 import Preloader from '../../common/Preloader';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import FormControlsWithFormik from '../../common/FormControls/FormControlsWithFormik';
-import { PostsType, ProfileType } from '../../../types/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPostsSelector, getProfileSelector } from '../../../reduxx/profile-selectors';
+import { actionsProfileReducer } from '../../../reduxx/profile-reducer';
 
 
 type PropsType = {
-    posts: Array<PostsType> 
-    profile: ProfileType | null
-    addPost: (newPostText: string, newPostId: number) => void
-    deletePost: (postID: number) => void
 }
+
 
 const MyPosts: React.FC<PropsType> = (props) => {
 
-debugger;
-    console.log('RENDER');
-    if (!props.profile) {
+    const posts = useSelector(getPostsSelector)
+    const profile = useSelector(getProfileSelector)
+    
+    const dispatch = useDispatch()
+
+  
+
+    const addPostText = (values: any) => {
+        let newPostId = posts.length + 2;
+        dispatch(actionsProfileReducer.addPost(values.newPostText, newPostId))
+    }
+
+    const deletePostText = (postID: number) => {
+        dispatch(actionsProfileReducer.deletePost(postID))
+    }
+
+
+    if (!profile) {
         return <Preloader />;
     }
     let userPhoto = UserImg;
-    if (props.profile.photos.small) {
-        userPhoto = props.profile.photos.small;
+    if (profile.photos.small) {
+        userPhoto = profile.photos.small;
     }
 
-    let postsElements = [...props.posts].map(post =>
-         <Post profile={props.profile} key={post.id} id={post.id} message={post.message} likesCount={post.likesCount} deletePost={props.deletePost} />)
+    let postsElements = [...posts].map(post =>
+         <Post profile={profile} key={post.id} id={post.id} message={post.message} likesCount={post.likesCount} deletePost={deletePostText} />)
 
-    let newPostId = props.posts.length + 2;
+    
 
 
-    const addPostText = (values: any) => {
-        debugger
-         props.addPost(values.newPostText, newPostId);
-    }
+    
 
     return (
         <div className={classes.posts}>
@@ -48,7 +56,7 @@ debugger;
                 <div className={classes.postForm}>
                     <div className={classes.user}>
                         <img className={classes.userImg} src={userPhoto} alt="" />
-                    <h3>{props.profile.fullName}</h3>
+                    <h3>{profile.fullName}</h3>
                     </div>
                     <div className={classes.addPost}>
                         <div className={classes.addPost_item}>
@@ -106,31 +114,7 @@ const MyPostsMemorized = React.memo(MyPosts)
 
 export default MyPostsMemorized;
 
-// let  maxLength50 = maxLengthCreator(50);
 
-
-
-// const AddPostForm = (props) => {
-//     return (
-//         <form onSubmit={props.handleSubmit} >
-//             <Field rows='5' cols='70' 
-//             component={Textarea} 
-//             name='newPostText' 
-//             validate={[required, maxLength50]} 
-//             placeholder={'Write your text here'}
-//              />
-//             <button>Add post</button>
-//         </form>
-//     );
-// }
-
-// const afterSubmit = (result, dispatch) =>
-//      dispatch(reset('post'));
-
-// const AddPostReduxForm = reduxForm({
-//     form: 'post',
-//     onSubmitSuccess: afterSubmit,
-// })(AddPostForm);
 
 
 

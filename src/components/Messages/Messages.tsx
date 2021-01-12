@@ -1,59 +1,29 @@
 import React from 'react';
 import classes from './Messages.module.css';
-import UserImg from '../../images/sideBar/user.svg';
-import { NavLink, Redirect } from 'react-router-dom';
-// import { Field, reduxForm, reset } from 'redux-form';
-// import { Textarea } from '../common/FormControls/FormControls';
-// import { maxLengthCreator, required } from '../../utils/validators/validators';
-import { Formik, Form,  } from 'formik';
-import FormControlsWithFormik from '../common/FormControls/FormControlsWithFormik';
-import * as Yup from 'yup';
-import { DialogsType, MessagesType } from '../../types/types';
+import { DialogItem } from './DialogItem';
+import { Message } from './Message';
+import { AddMessageFormik } from './MessagesForm';
+import { AppRootStateType } from '../../reduxx/redux-store';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionsMessagesReducer } from '../../reduxx/messages-reducer';
+import { getDialogs, getMessages } from '../../reduxx/messages-selectors';
 
 
-type DialogItemPropsType = {
-    name: string,
-    id: number
-}
 
 
-const DialogItem: React.FC<DialogItemPropsType> = ({name, id}) => {
-    return (
-        <div>
-            <NavLink to={'/messages/' + id} className={`${classes.item} `} >
-                <img src={UserImg} alt="" />{name}</NavLink>
-        </div>
-    );
-}
+export const Messages: React.FC = () => {
 
-type MessagePropsType = {
-    message: string
-}
+    const dialogs = useSelector(getDialogs)
+    const messages = useSelector(getMessages)
 
-const Message: React.FC<MessagePropsType> = ({message}) => {
-    return (
-        <div className={classes.item}><img src={UserImg} alt="" />{message}</div>
-    );
-}
+    const dispatch = useDispatch()
 
-type MessagesPropsType = {
-    dialogs: Array<DialogsType>
-    messages: Array<MessagesType>
-    isAuth: boolean
-
-    addMessage: (newMessageText: string) => void
-}
+    const dialogsElements = dialogs.map((dialog) => <DialogItem name={dialog.name} id={dialog.id} />);
+    const messagesElements = messages.map((message) => <Message message={message.message} />);
 
 
-const Messages: React.FC<MessagesPropsType> = ({dialogs, messages, addMessage}) => {
-
-
-    let dialogsElements = dialogs.map((dialog) => <DialogItem name={dialog.name} id={dialog.id} />);
-    let messagesElements = messages.map((message) => <Message message={message.message} />);
-
-    
-    let addNewMessage = (values: any)  => {
-        addMessage(values.newMessageText);
+    const addNewMessage = (values: { newMessageText: string }) => {
+        dispatch(actionsMessagesReducer.addMessageActionCreator(values.newMessageText))
     }
 
     return <div id={classes.messagesArticle} className={classes.messagesArticle}>
@@ -66,68 +36,4 @@ const Messages: React.FC<MessagesPropsType> = ({dialogs, messages, addMessage}) 
         </div>
     </div>
 }
-
-type AddMessageFormikPropsType = {
-    onSubmit: (newMessageText: string) => void
-    className?: string
-}
-
-const AddMessageFormik: React.FC<AddMessageFormikPropsType> = ({onSubmit}) => {
-
-    return (
-        <Formik
-            initialValues={{ newMessageText: '' }}
-            validationSchema={Yup.object({
-                newMessageText: Yup.string().required('Cannot send an empty message').max(50)
-            })}
-            onSubmit={(values: any, {resetForm}) => {
-                onSubmit(values);
-                resetForm();
-            }}
-            
-        >
-            {
-                formik => {
-                    return <Form>
-                        <FormControlsWithFormik className={classes.input}
-                            control='textarea'
-                            name='newMessageText'
-                            placeholder='Write your message'
-                        />
-                        <button className={classes.button} type='submit'>Send</button>
-                    </Form>
-
-                }
-            }
-        </Formik>
-    );
-}
-
-export default Messages;
-
-// let maxLength50 = maxLengthCreator(50);
-
-// const AddMessageForm = (props) => {
-//     return (
-//         <form onSubmit={props.handleSubmit} >
-//             <Field className={classes.input}
-//                 component={Textarea}
-//                 validate={[required, maxLength50]}
-//                 name='newMessageText'
-//                 placeholder={'Write your message'} />
-//             <div className={classes.button}><button >Add Message</button></div>
-//         </form>
-//     );
-// }
-
-// const afterSubmit = (result, dispatch) =>
-//     dispatch(reset('message'));
-
-// const MessageReduxForm = reduxForm({
-//     // a unique name for the form
-//     form: 'message',
-//     onSubmitSuccess: afterSubmit,
-
-// })(AddMessageForm)
-
 

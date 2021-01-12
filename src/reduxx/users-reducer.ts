@@ -12,7 +12,6 @@ let initialStateUsersReducer = {
     pageSizeFriends: 10,
     totalUsersCount: 0,
     currentPage: 1,
-    currentPageFriends: 1,
     isFetching: true,
     followingInProgress: [] as Array<number>, // Array of users ids
     filter: {
@@ -123,7 +122,6 @@ type ThunkType = BasicThunkType<UsersReducerActionsTypes>
 
 
 export const getUsersThunk = (currentPage: number, pageSize: number, filter: FilterType): ThunkType => {
-
     return async (dispatch, getState) => {
         dispatch(actionsUsersReducer.toggleIsFetching(true));
         debugger

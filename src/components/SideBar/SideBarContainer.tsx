@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import SideBar from './SideBar';
+import {SideBar} from './SideBar';
 import { getAuthUserPhotoThunk } from '../../reduxx/auth-reducer';
 import { AppRootStateType } from '../../reduxx/redux-store';
 
@@ -45,5 +45,5 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
 
 });
 
-export default connect<MapStatePropsType,MapDispatchPropsType,unknown,AppRootStateType>(
+ connect<MapStatePropsType,MapDispatchPropsType,unknown,AppRootStateType>(
     mapStateToProps, {getAuthUserPhotoThunk})(SideBarContainer);

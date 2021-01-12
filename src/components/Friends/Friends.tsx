@@ -11,16 +11,17 @@ import {
     unfollowThunk,
     followThunk
 } from '../../reduxx/users-reducer';
+import { getCurrentPage, getFollowingInProgress, getPageSizeFriends, getTotalUsersCount, getUsers } from '../../reduxx/users-selectors';
 
 
 export const Friends: React.FC = (props) => {
 
 
-  const currentPage = useSelector((state: AppRootStateType) => state.usersPage.currentPage)
-  const totalUsersCount = useSelector((state: AppRootStateType) => state.usersPage.totalUsersCount)
-  const pageSizeFriends = useSelector((state: AppRootStateType) => state.usersPage.pageSizeFriends)
-  const users = useSelector((state: AppRootStateType) => state.usersPage.users)
-  const followingInProgress = useSelector((state: AppRootStateType) => state.usersPage.followingInProgress)
+  const currentPage = useSelector(getCurrentPage)
+  const totalUsersCount = useSelector(getTotalUsersCount)
+  const pageSizeFriends = useSelector(getPageSizeFriends)
+  const users = useSelector(getUsers)
+  const followingInProgress = useSelector(getFollowingInProgress)
 
   const dispatch = useDispatch()
 
