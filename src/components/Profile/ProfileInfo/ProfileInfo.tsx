@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAuthorizedUserIdSelector, getErrorMessageSelector, getProfileSelector, getStatusSelector } from '../../../reduxx/profile-selectors';
 import { savePhotoThunk, saveProfileThunk, updateStatusThunk} from '../../../reduxx/profile-reducer';
 import { ProfileData } from './ProfileData';
+import { getUserId } from '../../../reduxx/auth-selectors';
+import { getAuthUserPhotoThunk } from '../../../reduxx/auth-reducer';
 
 
 type ProfileInfoPropsType = {
@@ -17,8 +19,7 @@ type ProfileInfoPropsType = {
 
     
 
-const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
-    isOwner }) => {
+const ProfileInfo: React.FC<ProfileInfoPropsType> = ({ isOwner }) => {
 
     let [editMode, setEditMode] = useState(false);
 

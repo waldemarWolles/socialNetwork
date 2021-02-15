@@ -9,11 +9,11 @@ type SavePhotoDataResponseType = {
 
 export const profileAPI = {
     getProfile: (userId: number | null) => {
-        debugger;
+       
         return instance.get<ProfileType>(`profile/${userId}`)
 
             .then(response => {
-                debugger;
+              
                 return response.data
             });
     },

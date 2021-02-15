@@ -33,7 +33,7 @@ export const SideBar: React.FC<PropsType> = (props) => {
 
     return <div className={classes.sideBar} id={classes.pageSideBar}>
         {isAuth
-            ? <div className={classes.item}>
+            ? <div className={classes.item} >
                 <NavLink to="/profile" >
                     <img className={cn(classes.img, classes.auth_user)} src={userPhoto} alt="" /> <h3>{login}</h3>
                 </NavLink>
@@ -53,6 +53,9 @@ export const SideBar: React.FC<PropsType> = (props) => {
         </div>
         <div className={classes.item}>
             <NavLink to="/videos"><VideoImg className={classes.img} /><h3>Videos</h3></NavLink>
+        </div>
+        <div className={classes.item}>
+            <NavLink to="/chat"><VideoImg className={classes.img} /><h3>Chat</h3></NavLink>
         </div>
 
     </div>

@@ -1,64 +1,59 @@
-.header 
-{
+.header {
   display: flex;
   align-items: center;
   padding: 5px;
-  background-color:#3f3e3e;
+  background-color: #3f3e3e;
   justify-content: space-between;
   position: fixed;
   width: 100%;
 }
 
 #pageHeader {
-    grid-area: header;
-  }
+  grid-area: header;
+}
 
-  .search, .nav, .options {
-    display: flex;
-    align-items: center;
-    justify-content: center ;
-  }
+.search,
+.nav,
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .auth_user {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    margin-right: 20px;
-  }
+.auth_user {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-right: 20px;
+}
 
-  .auth_user:hover {
-   background-color:#000000 ;
-   border-radius: 5px;
-  }
+.auth_user:hover {
+  background-color: #000000;
+  border-radius: 5px;
+}
 
-  .auth_user:hover .lock_img{
-    fill: white;
-  }
+.auth_user:hover .lock_img {
+  fill: white;
+}
 
-  .search_item {
-    padding: 0 10px;
-  
-  }
+.nav_item {
+  padding: 25px 50px 10px;
+}
 
-  .nav_item {
-    padding: 25px 50px 10px;
-    
-  }
+.nav_item.active {
+  fill: #4287f5;
+}
 
-  .nav_item.active  {
-   fill: #4287f5;
-  }
+.nav_item:hover {
+  background-color: #5d5c5c;
+  border-radius: 10px;
+}
 
-   .nav_item:hover {
-    background-color: #5d5c5c;
-    border-radius: 10px;
-  }
-
-  .img,
-  .lock_img {
-    width: 30px;
-    height: 30px;
-  }
+.img,
+.lock_img {
+  width: 30px;
+  height: 30px;
+}
 
 .login {
   display: flex;
@@ -66,10 +61,13 @@
 }
 
 .login .img,
-.lock_img{
+.lock_img {
   border-radius: 20px;
   margin-right: 10px;
- 
+}
+
+.logo {
+  margin-left: 35px;
 }
 
 .logo:hover {
@@ -84,27 +82,25 @@
 }
 
 .nav_item {
-	display: inline;
-	position: relative;
+  display: inline;
+  position: relative;
 }
 .nav_item:hover:after {
-	content: attr(data-title);
-	z-index: 999;
-	position: absolute;
-	bottom: -30px;
-	left: 0;
-	width: 100px;
-	padding: 7px 15px 10px 15px;
-	font-size: 13px;
-	font-weight: 500;
+  content: attr(data-title);
+  z-index: 999;
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  width: 100px;
+  padding: 7px 15px 10px 15px;
+  font-size: 13px;
+  font-weight: 500;
   color: #fff;
   text-align: center;
-	background-color: #838383;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-o-border-radius: 3px;
-	-ms-border-radius: 3px;
-	border-radius: 10px;
+  background-color: #838383;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 10px;
 }
-
-

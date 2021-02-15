@@ -1,20 +1,31 @@
-.form_item  {
-    background-color: white;
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.login label {
+  margin: 10px auto;
+}
+
+.form_item {
+  background-color: white;
 }
 
 .form_error {
-    border: 1px solid red;
-    padding: 20px;
+  border: 1px solid red;
+  padding: 20px;
 }
 
 .checkbox {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .checkbox_field {
-    margin: 0;
+  margin: 0;
 }
 
 .checkbox h4 {
-    margin-left: 150px;
+  margin-left: 150px;
 }
