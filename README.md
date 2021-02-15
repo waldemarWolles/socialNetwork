@@ -1,1 +1,1 @@
-Link: https://waldemarwolles.github.io/socialNetwork
+Link: https://waldemarwolles.github.io/socialNetwork/#/profile
