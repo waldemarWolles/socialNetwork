@@ -53,14 +53,14 @@ const LoginWithFormik: React.FC<PropsType> = ({
               type="email"
               name="email"
               placeholder="Enter your email"
-              label="Email: chooter1999@gmail.com"
+              label="Email: free@samuraijs.com"
             />
             <FormControlsWithFormik
               control="input"
               type="password"
               name="password"
               placeholder="Enter your password"
-              label="Password: _Q4zRLXr5kGXNWv"
+              label="Password: free"
             />
             <div className={classes.checkbox}>
               <h4>Remember me?</h4>
