@@ -1,15 +1,13 @@
-import { readFileSync } from 'fs';
-import React from 'react';
-import preloaderImg from '../../images/preloader.gif';
-import classes from '../Friends/Friends.module.css';
-
-type PropsType = {}
+import React from 'react'
+import preloaderImg from '../../images/preloader.gif'
+import classes from '../Friends/Friends.module.css'
 
 const Preloader: React.FC = (props) => {
-    return <div className={classes.preloader}>
-        <img src={preloaderImg} alt="preloader" />
+  return (
+    <div className={classes.preloader}>
+      <img src={preloaderImg} alt="preloader" />
     </div>
+  )
 }
 
-export default Preloader;
-
+export default Preloader
