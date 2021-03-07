@@ -3,8 +3,8 @@
     "static/js/0.eff441da.chunk.js": "/socialNetwork/static/js/0.eff441da.chunk.js",
     "static/js/0.eff441da.chunk.js.map": "/socialNetwork/static/js/0.eff441da.chunk.js.map",
     "main.css": "/socialNetwork/static/css/main.266d9b7d.chunk.css",
-    "main.js": "/socialNetwork/static/js/main.8c2b20a5.chunk.js",
-    "main.js.map": "/socialNetwork/static/js/main.8c2b20a5.chunk.js.map",
+    "main.js": "/socialNetwork/static/js/main.72d285f7.chunk.js",
+    "main.js.map": "/socialNetwork/static/js/main.72d285f7.chunk.js.map",
     "runtime-main.js": "/socialNetwork/static/js/runtime-main.eeeb56e3.js",
     "runtime-main.js.map": "/socialNetwork/static/js/runtime-main.eeeb56e3.js.map",
     "static/js/3.816db84f.chunk.js": "/socialNetwork/static/js/3.816db84f.chunk.js",
@@ -32,7 +32,7 @@
     "static/js/11.e278561b.chunk.js": "/socialNetwork/static/js/11.e278561b.chunk.js",
     "static/js/11.e278561b.chunk.js.map": "/socialNetwork/static/js/11.e278561b.chunk.js.map",
     "index.html": "/socialNetwork/index.html",
-    "precache-manifest.9b2a0669ed6456189f47d5a308ded6f4.js": "/socialNetwork/precache-manifest.9b2a0669ed6456189f47d5a308ded6f4.js",
+    "precache-manifest.a06b2381b56f252e7eb153192d2961c5.js": "/socialNetwork/precache-manifest.a06b2381b56f252e7eb153192d2961c5.js",
     "service-worker.js": "/socialNetwork/service-worker.js",
     "static/css/4.8f118048.chunk.css.map": "/socialNetwork/static/css/4.8f118048.chunk.css.map",
     "static/css/5.3743d07f.chunk.css.map": "/socialNetwork/static/css/5.3743d07f.chunk.css.map",
@@ -43,6 +43,7 @@
     "static/css/main.266d9b7d.chunk.css.map": "/socialNetwork/static/css/main.266d9b7d.chunk.css.map",
     "static/js/3.816db84f.chunk.js.LICENSE.txt": "/socialNetwork/static/js/3.816db84f.chunk.js.LICENSE.txt",
     "static/media/Logo.3b08b22e.svg": "/socialNetwork/static/media/Logo.3b08b22e.svg",
+    "static/media/chat.62fa0896.svg": "/socialNetwork/static/media/chat.62fa0896.svg",
     "static/media/friends.8f980086.svg": "/socialNetwork/static/media/friends.8f980086.svg",
     "static/media/friends.97655f29.svg": "/socialNetwork/static/media/friends.97655f29.svg",
     "static/media/groups.03a0ce31.svg": "/socialNetwork/static/media/groups.03a0ce31.svg",
@@ -58,6 +59,6 @@
     "static/js/runtime-main.eeeb56e3.js",
     "static/js/3.816db84f.chunk.js",
     "static/css/main.266d9b7d.chunk.css",
-    "static/js/main.8c2b20a5.chunk.js"
+    "static/js/main.72d285f7.chunk.js"
   ]
 }
