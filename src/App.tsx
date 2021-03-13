@@ -28,8 +28,10 @@ const ChatPage = React.lazy(() =>
   }))
 )
 
-const ProfileContainerHooks = React.lazy(
-  () => import('./components/Profile/ProfileContainerHooks')
+const ProfilePage = React.lazy(() =>
+  import('./components/Profile/ProfileContainerHooks').then((module) => ({
+    default: module.ProfilePageWithAuth,
+  }))
 )
 const Login = React.lazy(() =>
   import('./components/Login/Login').then((module) => ({
@@ -75,10 +77,7 @@ class App extends React.Component<PropsType> {
           >
             <Switch>
               <Route path="/messages" render={() => <MessagesContainer />} />
-              <Route
-                path="/profile/:userId?"
-                render={() => <ProfileContainerHooks />}
-              />
+              <Route path="/profile/:userId?" render={() => <ProfilePage />} />
               <Route path="/friends" render={() => <FriendsContainer />} />
               <Route path="/users" render={() => <UsersPage />} />
               <Route path="/videos" render={() => <Videos />} />

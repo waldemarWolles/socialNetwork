@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProfileThunk, getStatusThunk } from '../../reduxx/profile-reducer'
 import { RouteComponentProps, useHistory, withRouter } from 'react-router-dom'
 import { getAuthorizedUserIdSelector } from '../../reduxx/profile-selectors'
+import { withAuthRedirect } from '../common/withAuthRedirect'
 
 type RouteComponentParamsProps = {
   userId: string
@@ -52,4 +53,6 @@ const ProfileContainerWithHooks: React.FC<PropsType> = (props) => {
   return <Profile isOwner={!props.match.params.userId} />
 }
 
-export default withRouter(ProfileContainerWithHooks)
+export const ProfilePageWithAuth = withAuthRedirect(
+  withRouter(ProfileContainerWithHooks)
+)
